@@ -1,3 +1,52 @@
+"""
+AWS Parameter Store Security Manager
+==================================
+
+This script manages AWS Systems Manager Parameter Store parameters with a focus on security.
+It identifies non-secure parameters and provides options to convert them to secure parameters.
+
+Key Features:
+------------
+1. AWS Profile Support:
+   - Lists and validates available AWS profiles
+   - Supports multiple AWS accounts via profile selection
+   - Validates AWS credentials before operations
+
+2. Parameter Store Operations:
+   - Identifies all non-secure (String type) parameters in a region
+   - Exports parameter names and values to Excel for review
+   - Optional conversion of non-secure parameters to SecureString type
+
+3. Security Features:
+   - Credential validation before operations
+   - Confirmation prompts before sensitive actions
+   - Logging of all operations and errors
+   - Support for AWS KMS encryption via SecureString conversion
+
+Usage:
+------
+1. Run the script
+2. Select AWS profile (or use default credentials)
+3. Specify AWS region (defaults to eu-west-1)
+4. Choose whether to convert parameters to secure
+5. Review generated Excel file with parameter details
+
+Requirements:
+------------
+- Python 3.6+
+- boto3
+- pandas
+- openpyxl (for Excel support)
+
+AWS Permissions Required:
+-----------------------
+- ssm:DescribeParameters
+- ssm:GetParameter
+- ssm:PutParameter
+- sts:GetCallerIdentity (for credential validation)
+"""
+
+
 import boto3
 import pandas as pd
 import logging
